@@ -1,0 +1,23 @@
+.my-footer {
+    background-color: black;
+    color: #FFFFFF;
+    padding: 1.5em;
+    height: 5em;
+    font-size: 95%;
+}
+
+.my-room{
+    width: 50%;
+}
+
+.redText{
+  color: red;
+}
+
+.notie-container {
+      box-shadow: none;
+}
+
+.datepicker{
+  z-index: 100000;
+}
