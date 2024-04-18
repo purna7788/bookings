@@ -34,22 +34,47 @@
 {{define "js"}}
 <script>
 document.getElementById("check-availability").addEventListener("click", function(){
-    let html = `<form id="check-availability-button"  action="" method="post">
-                    <div class="form-row">
-                        <div class="col">
-                            <div class="row" id="reservation-dates-modal" >
-                                <div class="col">
-                                        <input type="text" name="start" id="start" required class="form-control" placeholder="arrival">
-                                </div>       
-                                <div class="col">
-                                        <input type="text" name="end" id="end" required class="form-control" placeholder="departure">
-                                </div>
-                            </div>
-                        </div>
-                     </div>      
-            </form>`
-            attention.custom({msg:html,title:"choose your dates"});
-})
+                                let html = `<form id="check-availability-form"  action="/search-availability-json" method="post">
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="row" id="reservation-dates-modal" >
+                                                    <div class="col">
+                                                            <input type="text" name="start" id="start" required class="form-control" placeholder="arrival">
+                                                    </div>       
+                                                    <div class="col">
+                                                            <input type="text" name="end" id="end" required class="form-control" placeholder="departure">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>      
+                                </form>`
+                                attention.custom({
+                                                    msg:html,
+                                                    title:"choose your dates",
+                                                    callback: function(){
+                                                                console.log("call back");
+                                                                let form = document.getElementById("check-availability-form");
+                                                                let formdata= new FormData(form);
+                                                                formdata.append("csrf_token","{{.CSRFToken}}");
+                                                                
+                                                                fetch("/search-availability-json",
+                                                                            { method: "post",
+                                                                            body: formdata,
+                                                                            })
+                                                                .then(response => response.json()).then( 
+                                                                    result => {console.log(result)}  );
+                                                    },
+                                                    willOpen:  () => {
+                                                        const elem = document.getElementById('reservation-dates-modal');
+                                                        const rangepicker = new DateRangePicker(elem, {
+                                                        format: "yyyy-mm-dd",
+                                                        orientation : "left top",
+                                                        autohide: true,
+                                                        showOnFocus: true
+                                            })
+                                                            },
+                                                });
+                             });
 
 </script>
 {{end}}

@@ -127,8 +127,7 @@
                                 icon: icon,
                                 title: msg
                                 });
-                            
-                                Toast.fire({ });
+                    Toast.fire({ });
                         }
                        
                 let success = function(c){
@@ -138,31 +137,29 @@
                         text = "everying is cool!",
 
                     } = c;
-                        Swal.fire({
-                            icon:icon,
-                            title: title,
-                            text : text 
-                            });
-                        }
+                    
+                    Swal.fire({
+                        icon:icon,
+                        title: title,
+                        text : text 
+                        });
+                    }
 
                 let custom = async function (c){
-                    const {
+                    
+                  const {
                     msg= "",
                     title = ""
                     } = c;
 
-                    const { value: formValues } = await Swal.fire({
+                  const { value: results } = await Swal.fire({
                             title: title,
                             html: msg,
                             willOpen: () => {
-                            const elem = document.getElementById('reservation-dates-modal');
-                                            const rangepicker = new DateRangePicker(elem, {
-                                            format: "yyyy-mm-dd",
-                                            orientation : "left top",
-                                            autohide: true,
-                                            showOnFocus: true
-
-                                            }); 
+                           
+                                           if (c.willOpen !== undefined) {
+                                              c.willOpen();
+                                           }
                                         } ,
                             showCancelButton : true,
                             preConfirm: () => {
@@ -172,9 +169,21 @@
                             ];
                             }
                         });
-                        if (formValues) {
-                            Swal.fire(JSON.stringify(formValues));
+                    
+                        if (results) {
+
+                        if  (results.dismiss !==  Swal.DismissReason.cancel){
+                            if (results.value !== "") {
+                                  if (c.callback !== undefined){
+                                    c.callback(results)
+                                  }else{
+                                    c.callback(false)
+                                  }
+                            }
+                        }else{
+                          c.callback(false)
                         }
+                    }
                 }      
                 
                 return {

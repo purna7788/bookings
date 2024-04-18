@@ -7,13 +7,15 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/purna7788/bookings/pkg/config"
-	"github.com/purna7788/bookings/pkg/models"
+	"github.com/justinas/nosurf"
+	"github.com/purna7788/bookings/cmd/internal/config"
+	"github.com/purna7788/bookings/cmd/internal/models"
 )
 
 var tc *config.AppConfig
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, td models.TemplateData) error {
+// RenderTemplate renders templates using html/template
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td models.TemplateData) error {
 
 	var cache map[string]*template.Template
 	var err error
@@ -32,6 +34,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td models.TemplateData) 
 		log.Fatal("not able to create template cache")
 	}
 
+	td = dafaultData(td, r)
 	var buf = new(bytes.Buffer)
 	err = tl.Execute(buf, td)
 	if err != nil {
@@ -80,4 +83,11 @@ func CreateCache() (map[string]*template.Template, error) {
 
 func NewTemplate(a *config.AppConfig) {
 	tc = a
+}
+
+func dafaultData(td models.TemplateData, r *http.Request) models.TemplateData {
+	csrfToken := nosurf.Token(r)
+	td.CSRFToken = csrfToken
+
+	return td
 }
