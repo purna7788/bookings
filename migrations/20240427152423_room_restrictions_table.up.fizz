@@ -1,0 +1,10 @@
+sql("CREATE TABLE room_restrictions(
+    id serial NOT NULL PRIMARY KEY,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    room_id int NOT NULL,
+    reservation_id int NOT NULL,
+    restriction_id int NOT NULL,
+    created_at  date NOT NULL,
+    updated_at date NOT NULL
+)")

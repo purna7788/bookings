@@ -1,0 +1,1 @@
+sql("ALTER TABLE users DROP CONSTRAINT UC_users")

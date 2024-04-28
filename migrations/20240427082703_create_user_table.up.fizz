@@ -1,0 +1,11 @@
+sql("CREATE  TABLE  users(
+    id serial NOT NULL PRIMARY KEY,
+    first_name varchar(255) NOT NULL DEFAULT '',
+    last_name varchar(255) NOT NULL DEFAULT '',
+    email varchar(255) NOT NULL,
+    password varchar(60) NOT NULL,
+    access_level int  default 1,
+    created_at date NOT NULL,
+    updated_at date NOT NULL
+   
+)")

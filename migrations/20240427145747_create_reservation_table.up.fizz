@@ -1,0 +1,12 @@
+sql("CREATE TABLE reservations(
+    id serial NOT NULL PRIMARY KEY,
+    first_name varchar(255) NOT NULL DEFAULT '',
+    last_name varchar(255) NOT NULL DEFAULT '',
+    email varchar(255) NOT NULL,
+    phone varchar(255) NOT NULL DEFAULT '',
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    room_id int NOT NULL,
+    created_at  date NOT NULL,
+    updated_at date NOT NULL
+)")

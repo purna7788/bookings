@@ -1,0 +1,2 @@
+sql("ALTER TABLE room_restrictions DROP CONSTRAINT fk_room_id;
+ALTER TABLE room_restrictions DROP CONSTRAINT fk_restriction_id;")  

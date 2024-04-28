@@ -1,0 +1,2 @@
+sql("ALTER TABLE room_restrictions ADD CONSTRAINT fk_reservation_id  FOREIGN KEY (reservation_id) REFERENCES reservations(id) ON DELETE CASCADE ON UPDATE CASCADE;
+CREATE INDEX reservations_email_last_name_idx ON reservations (email,last_name);")

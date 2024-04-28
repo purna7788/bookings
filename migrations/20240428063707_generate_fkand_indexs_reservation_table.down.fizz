@@ -1,0 +1,2 @@
+sql("DROP INDEX IF EXISTS reservations_email_last_name_idx;
+ALTER TABLE room_restrictions DROP CONSTRAINT fk_reservation_id")

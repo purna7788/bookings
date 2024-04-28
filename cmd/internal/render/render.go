@@ -34,7 +34,7 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td mode
 		log.Fatal("not able to create template cache")
 	}
 
-	td = dafaultData(td, r)
+	td = defaultData(td, r)
 	var buf = new(bytes.Buffer)
 	err = tl.Execute(buf, td)
 	if err != nil {
@@ -85,7 +85,13 @@ func NewTemplate(a *config.AppConfig) {
 	tc = a
 }
 
-func dafaultData(td models.TemplateData, r *http.Request) models.TemplateData {
+
+// defaultData adds data for all templates.
+func defaultData(td models.TemplateData, r *http.Request) models.TemplateData {
+
+	td.Flash = tc.Session.PopString(r.Context(),"flash")
+	td.Error = tc.Session.PopString(r.Context(),"error")
+	td.Warning = tc.Session.PopString(r.Context(),"warning")
 	csrfToken := nosurf.Token(r)
 	td.CSRFToken = csrfToken
 

@@ -1,5 +1,15 @@
 package models
 
+import "github.com/purna7788/bookings/cmd/internal/forms"
+
+//Reservation holds reservation data
+type Reservation struct {
+	FirstName string
+	LastName  string
+	Email     string
+	Phone     string
+}
+
 //TemplateData holds data sent from handler to renderTemplate
 type TemplateData struct {
 	StringMap map[string]string
@@ -10,4 +20,5 @@ type TemplateData struct {
 	Error     string
 	Flash     string
 	Warning   string
+	Form      *forms.Form
 }

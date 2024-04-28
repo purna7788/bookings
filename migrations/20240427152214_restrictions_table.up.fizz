@@ -1,0 +1,6 @@
+sql("CREATE TABLE restrictions(
+    id serial NOT NULL PRIMARY KEY,
+    restriction_name varchar(255) NOT NULL DEFAULT '',
+    created_at  date NOT NULL,
+    updated_at date NOT NULL
+)")

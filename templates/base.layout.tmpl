@@ -66,139 +66,148 @@
         </div>
       </div>
 
-    <script>     
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict'
-
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.querySelectorAll('.needs-validation')
-
-                // Loop over them and prevent submission
-                Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                    }, false)
-                })
-            })()
-
-            let attention = alert();
-
-            function notify(msg,msgTye) {
-            notie.alert({
-                    type: msgTye, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
-                    text: msg,
-                })
-            }
-
-            function sweetAlert(type,title,text) {
-                        Swal.fire({
-                            icon: type,
-                            title: title,
-                            text: text,
-                            footer: '<a href="#">Why do I have this issue?</a>'
-                            });
-            }
-
-            function alert(){ 
-
-                let toast = function (c) {         
-                    const{
-                        msg = "Signed in successfully",
-                        icon = "success",
-                        position =  "top-end",
-                    } = c;
-                    const Toast = Swal.mixin({
-                                toast: true,
-                                position: position,
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.onmouseenter = Swal.stopTimer;
-                                    toast.onmouseleave = Swal.resumeTimer;
-                                },
-                                icon: icon,
-                                title: msg
-                                });
-                    Toast.fire({ });
-                        }
-                       
-                let success = function(c){
-                    const{
-                        icon = "success",
-                        title= "login success",
-                        text = "everying is cool!",
-
-                    } = c;
-                    
-                    Swal.fire({
-                        icon:icon,
-                        title: title,
-                        text : text 
-                        });
-                    }
-
-                let custom = async function (c){
-                    
-                  const {
-                    msg= "",
-                    title = ""
-                    } = c;
-
-                  const { value: results } = await Swal.fire({
-                            title: title,
-                            html: msg,
-                            willOpen: () => {
-                           
-                                           if (c.willOpen !== undefined) {
-                                              c.willOpen();
-                                           }
-                                        } ,
-                            showCancelButton : true,
-                            preConfirm: () => {
-                            return [
-                                document.getElementById("start").value,
-                                document.getElementById("end").value
-                            ];
-                            }
-                        });
-                    
-                        if (results) {
-
-                        if  (results.dismiss !==  Swal.DismissReason.cancel){
-                            if (results.value !== "") {
-                                  if (c.callback !== undefined){
-                                    c.callback(results)
-                                  }else{
-                                    c.callback(false)
-                                  }
-                            }
-                        }else{
-                          c.callback(false)
-                        }
-                    }
-                }      
-                
-                return {
-                    toast: toast,
-                    success: success,
-                    custom : custom
-                }
-                }
-              
-    </script>
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
     <script src="https://unpkg.com/notie"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>     
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+          'use strict'
 
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+              }
+
+              form.classList.add('was-validated')
+              }, false)
+          })
+      })()
+
+      let attention = alert();
+
+      function notify(msg,msgTye) {
+      notie.alert({
+              type: msgTye, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+              text: msg,
+          })
+      }
+
+      function sweetAlert(type,title,text) {
+                  Swal.fire({
+                      icon: type,
+                      title: title,
+                      text: text,
+                      footer: '<a href="#">Why do I have this issue?</a>'
+                      });
+      }
+
+      function alert(){ 
+
+          let toast = function (c) {         
+              const{
+                  msg = "Signed in successfully",
+                  icon = "success",
+                  position =  "top-end",
+              } = c;
+              const Toast = Swal.mixin({
+                          toast: true,
+                          position: position,
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                              toast.onmouseenter = Swal.stopTimer;
+                              toast.onmouseleave = Swal.resumeTimer;
+                          },
+                          icon: icon,
+                          title: msg
+                          });
+              Toast.fire({ });
+                  }
+                 
+          let success = function(c){
+              const{
+                  icon = "success",
+                  title= "login success",
+                  text = "everying is cool!",
+
+              } = c;
+              
+              Swal.fire({
+                  icon:icon,
+                  title: title,
+                  text : text 
+                  });
+              }
+
+          let custom = async function (c){
+              
+            const {
+              msg= "",
+              title = ""
+              } = c;
+
+            const { value: results } = await Swal.fire({
+                      title: title,
+                      html: msg,
+                      willOpen: () => {
+                     
+                                     if (c.willOpen !== undefined) {
+                                        c.willOpen();
+                                     }
+                                  } ,
+                      showCancelButton : true,
+                      preConfirm: () => {
+                      return [
+                          document.getElementById("start").value,
+                          document.getElementById("end").value
+                      ];
+                      }
+                  });
+              
+                  if (results) {
+
+                  if  (results.dismiss !==  Swal.DismissReason.cancel){
+                      if (results.value !== "") {
+                            if (c.callback !== undefined){
+                              c.callback(results)
+                            }else{
+                              c.callback(false)
+                            }
+                      }
+                  }else{
+                    c.callback(false)
+                  }
+              }
+          }      
+          
+          return {
+              toast: toast,
+              success: success,
+              custom : custom
+          }
+          }
+        
+
+        {{with .Error}}
+        console.log("error is available in session objects")
+        notify("{{ . }}" ,"error")
+        {{end}}
+
+        {{with .Flash}}
+        notify("{{ . }}" ,"success")
+        {{end}}
+    </script>
     {{block "js" .}}
     {{end}} 
 </body>

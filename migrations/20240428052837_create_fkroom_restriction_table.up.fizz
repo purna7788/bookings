@@ -1,0 +1,2 @@
+sql("ALTER TABLE room_restrictions ADD CONSTRAINT fk_room_id  FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE room_restrictions ADD CONSTRAINT fk_restriction_id  FOREIGN KEY (restriction_id) REFERENCES restrictions(id) ON DELETE CASCADE ON UPDATE CASCADE;")

@@ -1,0 +1,4 @@
+sql("DROP INDEX IF EXISTS index_start_end_date_idx;
+DROP INDEX IF EXISTS room_restrictions_room_id_idx;
+DROP INDEX IF EXISTS room_restrictions_reservation_id_idx;")
+
